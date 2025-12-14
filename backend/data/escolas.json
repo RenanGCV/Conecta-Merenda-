@@ -1,0 +1,137 @@
+[
+  {
+    "id": "ESC001",
+    "nome": "EMEF Prof. João Carlos de Oliveira",
+    "tipo": "Municipal",
+    "cnpj": "12.345.678/0001-90",
+    "localizacao": {
+      "endereco": "Rua das Acácias, 234",
+      "bairro": "Centro",
+      "cidade": "Piracicaba",
+      "estado": "SP",
+      "cep": "13400-100",
+      "latitude": -22.7247,
+      "longitude": -47.6492
+    },
+    "contato": {
+      "diretor": "Maria Eduarda Silva",
+      "telefone": "(19) 3421-5678",
+      "email": "emef.joaocarlos@educacao.sp.gov.br"
+    },
+    "dados_escolares": {
+      "total_alunos": 450,
+      "turnos": ["Manhã", "Tarde"],
+      "refeicoes_dia": 900,
+      "orcamento_mensal_pnae": 15000.00
+    },
+    "membro_desde": "2020-01-15"
+  },
+  {
+    "id": "ESC002",
+    "nome": "EMEF Profa. Ana Maria Costa",
+    "tipo": "Municipal",
+    "cnpj": "23.456.789/0001-01",
+    "localizacao": {
+      "endereco": "Av. Brasil, 1520",
+      "bairro": "Jardim Primavera",
+      "cidade": "Campinas",
+      "estado": "SP",
+      "cep": "13050-200",
+      "latitude": -22.9056,
+      "longitude": -47.0608
+    },
+    "contato": {
+      "diretor": "Pedro Santos Oliveira",
+      "telefone": "(19) 3241-8765",
+      "email": "emef.anamaria@educacao.sp.gov.br"
+    },
+    "dados_escolares": {
+      "total_alunos": 620,
+      "turnos": ["Manhã", "Tarde", "Integral"],
+      "refeicoes_dia": 1550,
+      "orcamento_mensal_pnae": 22000.00
+    },
+    "membro_desde": "2019-08-20"
+  },
+  {
+    "id": "ESC003",
+    "nome": "EMEF Monteiro Lobato",
+    "tipo": "Municipal",
+    "cnpj": "34.567.890/0001-12",
+    "localizacao": {
+      "endereco": "Rua do Bosque, 876",
+      "bairro": "Vila Nova",
+      "cidade": "Limeira",
+      "estado": "SP",
+      "cep": "13480-300",
+      "latitude": -22.5665,
+      "longitude": -47.4021
+    },
+    "contato": {
+      "diretor": "Juliana Ferreira Lima",
+      "telefone": "(19) 3441-2345",
+      "email": "emef.monteiro@educacao.sp.gov.br"
+    },
+    "dados_escolares": {
+      "total_alunos": 380,
+      "turnos": ["Manhã", "Tarde"],
+      "refeicoes_dia": 760,
+      "orcamento_mensal_pnae": 12500.00
+    },
+    "membro_desde": "2020-05-10"
+  },
+  {
+    "id": "ESC004",
+    "nome": "EMEF Dom Pedro II",
+    "tipo": "Municipal",
+    "cnpj": "45.678.901/0001-23",
+    "localizacao": {
+      "endereco": "Praça da República, 45",
+      "bairro": "Centro Histórico",
+      "cidade": "Americana",
+      "estado": "SP",
+      "cep": "13465-100",
+      "latitude": -22.7392,
+      "longitude": -47.3318
+    },
+    "contato": {
+      "diretor": "Carlos Alberto Mendes",
+      "telefone": "(19) 3475-6789",
+      "email": "emef.dompedro@educacao.sp.gov.br"
+    },
+    "dados_escolares": {
+      "total_alunos": 520,
+      "turnos": ["Manhã", "Tarde"],
+      "refeicoes_dia": 1040,
+      "orcamento_mensal_pnae": 18000.00
+    },
+    "membro_desde": "2021-02-03"
+  },
+  {
+    "id": "ESC005",
+    "nome": "EMEF Cecília Meireles",
+    "tipo": "Municipal",
+    "cnpj": "56.789.012/0001-34",
+    "localizacao": {
+      "endereco": "Rua das Palmeiras, 321",
+      "bairro": "Jardim Bela Vista",
+      "cidade": "Sumaré",
+      "estado": "SP",
+      "cep": "13170-400",
+      "latitude": -22.8197,
+      "longitude": -47.2655
+    },
+    "contato": {
+      "diretor": "Fernanda Costa Silva",
+      "telefone": "(19) 3873-4567",
+      "email": "emef.cecilia@educacao.sp.gov.br"
+    },
+    "dados_escolares": {
+      "total_alunos": 340,
+      "turnos": ["Manhã", "Tarde"],
+      "refeicoes_dia": 680,
+      "orcamento_mensal_pnae": 11000.00
+    },
+    "membro_desde": "2022-03-18"
+  }
+]

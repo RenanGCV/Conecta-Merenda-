@@ -1,0 +1,308 @@
+{
+  "dezembro_2024": {
+    "regiao": "Sudeste",
+    "estado": "SP",
+    "produtos_safra": [
+      {
+        "nome": "Abóbora",
+        "categoria": "Hortaliças",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 3.50,
+        "variacao_preco": -15,
+        "nutricao": {
+          "calorias_100g": 26,
+          "proteinas_g": 1.0,
+          "carboidratos_g": 6.5,
+          "fibras_g": 0.5,
+          "vitaminas": ["Vitamina A", "Vitamina C", "Vitamina E"],
+          "minerais": ["Potássio", "Magnésio"]
+        }
+      },
+      {
+        "nome": "Abobrinha",
+        "categoria": "Hortaliças",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 4.20,
+        "variacao_preco": -10,
+        "nutricao": {
+          "calorias_100g": 17,
+          "proteinas_g": 1.2,
+          "carboidratos_g": 3.1,
+          "fibras_g": 1.0,
+          "vitaminas": ["Vitamina C", "Vitamina B6"],
+          "minerais": ["Potássio", "Manganês"]
+        }
+      },
+      {
+        "nome": "Alface",
+        "categoria": "Hortaliças",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 3.00,
+        "variacao_preco": -5,
+        "nutricao": {
+          "calorias_100g": 15,
+          "proteinas_g": 1.4,
+          "carboidratos_g": 2.9,
+          "fibras_g": 1.3,
+          "vitaminas": ["Vitamina A", "Vitamina K", "Folato"],
+          "minerais": ["Ferro", "Cálcio"]
+        }
+      },
+      {
+        "nome": "Beterraba",
+        "categoria": "Hortaliças",
+        "disponibilidade": "média",
+        "preco_medio_kg": 4.50,
+        "variacao_preco": 0,
+        "nutricao": {
+          "calorias_100g": 43,
+          "proteinas_g": 1.6,
+          "carboidratos_g": 9.6,
+          "fibras_g": 2.8,
+          "vitaminas": ["Vitamina C", "Folato"],
+          "minerais": ["Ferro", "Potássio", "Magnésio"]
+        }
+      },
+      {
+        "nome": "Brócolis",
+        "categoria": "Hortaliças",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 4.50,
+        "variacao_preco": -12,
+        "nutricao": {
+          "calorias_100g": 34,
+          "proteinas_g": 2.8,
+          "carboidratos_g": 7.0,
+          "fibras_g": 2.6,
+          "vitaminas": ["Vitamina C", "Vitamina K", "Folato"],
+          "minerais": ["Cálcio", "Ferro", "Potássio"]
+        }
+      },
+      {
+        "nome": "Cenoura",
+        "categoria": "Hortaliças",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 3.80,
+        "variacao_preco": -8,
+        "nutricao": {
+          "calorias_100g": 41,
+          "proteinas_g": 0.9,
+          "carboidratos_g": 9.6,
+          "fibras_g": 2.8,
+          "vitaminas": ["Vitamina A", "Vitamina K", "Vitamina C"],
+          "minerais": ["Potássio"]
+        }
+      },
+      {
+        "nome": "Chuchu",
+        "categoria": "Hortaliças",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 2.80,
+        "variacao_preco": -20,
+        "nutricao": {
+          "calorias_100g": 19,
+          "proteinas_g": 0.8,
+          "carboidratos_g": 4.5,
+          "fibras_g": 1.7,
+          "vitaminas": ["Vitamina C", "Folato"],
+          "minerais": ["Potássio", "Zinco"]
+        }
+      },
+      {
+        "nome": "Couve",
+        "categoria": "Hortaliças",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 3.00,
+        "variacao_preco": -5,
+        "nutricao": {
+          "calorias_100g": 49,
+          "proteinas_g": 4.3,
+          "carboidratos_g": 8.8,
+          "fibras_g": 3.6,
+          "vitaminas": ["Vitamina A", "Vitamina C", "Vitamina K"],
+          "minerais": ["Cálcio", "Ferro", "Potássio"]
+        }
+      },
+      {
+        "nome": "Tomate",
+        "categoria": "Hortaliças",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 5.50,
+        "variacao_preco": -10,
+        "nutricao": {
+          "calorias_100g": 18,
+          "proteinas_g": 0.9,
+          "carboidratos_g": 3.9,
+          "fibras_g": 1.2,
+          "vitaminas": ["Vitamina C", "Vitamina K", "Licopeno"],
+          "minerais": ["Potássio"]
+        }
+      },
+      {
+        "nome": "Banana",
+        "categoria": "Frutas",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 4.20,
+        "variacao_preco": -5,
+        "nutricao": {
+          "calorias_100g": 89,
+          "proteinas_g": 1.1,
+          "carboidratos_g": 22.8,
+          "fibras_g": 2.6,
+          "vitaminas": ["Vitamina B6", "Vitamina C"],
+          "minerais": ["Potássio", "Magnésio"]
+        }
+      },
+      {
+        "nome": "Laranja",
+        "categoria": "Frutas",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 3.50,
+        "variacao_preco": -18,
+        "nutricao": {
+          "calorias_100g": 47,
+          "proteinas_g": 0.9,
+          "carboidratos_g": 11.8,
+          "fibras_g": 2.4,
+          "vitaminas": ["Vitamina C", "Folato"],
+          "minerais": ["Potássio", "Cálcio"]
+        }
+      },
+      {
+        "nome": "Mamão",
+        "categoria": "Frutas",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 4.80,
+        "variacao_preco": -12,
+        "nutricao": {
+          "calorias_100g": 43,
+          "proteinas_g": 0.5,
+          "carboidratos_g": 10.8,
+          "fibras_g": 1.7,
+          "vitaminas": ["Vitamina C", "Vitamina A", "Folato"],
+          "minerais": ["Potássio", "Magnésio"]
+        }
+      },
+      {
+        "nome": "Manga",
+        "categoria": "Frutas",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 5.50,
+        "variacao_preco": -15,
+        "nutricao": {
+          "calorias_100g": 60,
+          "proteinas_g": 0.8,
+          "carboidratos_g": 15.0,
+          "fibras_g": 1.6,
+          "vitaminas": ["Vitamina C", "Vitamina A"],
+          "minerais": ["Potássio"]
+        }
+      },
+      {
+        "nome": "Melancia",
+        "categoria": "Frutas",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 2.50,
+        "variacao_preco": -20,
+        "nutricao": {
+          "calorias_100g": 30,
+          "proteinas_g": 0.6,
+          "carboidratos_g": 7.6,
+          "fibras_g": 0.4,
+          "vitaminas": ["Vitamina C", "Vitamina A"],
+          "minerais": ["Potássio"]
+        }
+      },
+      {
+        "nome": "Melão",
+        "categoria": "Frutas",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 3.80,
+        "variacao_preco": -18,
+        "nutricao": {
+          "calorias_100g": 34,
+          "proteinas_g": 0.8,
+          "carboidratos_g": 8.2,
+          "fibras_g": 0.9,
+          "vitaminas": ["Vitamina C", "Vitamina A"],
+          "minerais": ["Potássio"]
+        }
+      },
+      {
+        "nome": "Morango",
+        "categoria": "Frutas",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 11.00,
+        "variacao_preco": -25,
+        "nutricao": {
+          "calorias_100g": 32,
+          "proteinas_g": 0.7,
+          "carboidratos_g": 7.7,
+          "fibras_g": 2.0,
+          "vitaminas": ["Vitamina C", "Folato"],
+          "minerais": ["Potássio", "Manganês"]
+        }
+      },
+      {
+        "nome": "Uva",
+        "categoria": "Frutas",
+        "disponibilidade": "média",
+        "preco_medio_kg": 8.50,
+        "variacao_preco": 5,
+        "nutricao": {
+          "calorias_100g": 69,
+          "proteinas_g": 0.7,
+          "carboidratos_g": 18.1,
+          "fibras_g": 0.9,
+          "vitaminas": ["Vitamina C", "Vitamina K"],
+          "minerais": ["Potássio"]
+        }
+      },
+      {
+        "nome": "Batata",
+        "categoria": "Tubérculos",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 3.50,
+        "variacao_preco": 0,
+        "nutricao": {
+          "calorias_100g": 77,
+          "proteinas_g": 2.0,
+          "carboidratos_g": 17.5,
+          "fibras_g": 2.2,
+          "vitaminas": ["Vitamina C", "Vitamina B6"],
+          "minerais": ["Potássio", "Ferro"]
+        }
+      },
+      {
+        "nome": "Batata Doce",
+        "categoria": "Tubérculos",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 4.20,
+        "variacao_preco": -8,
+        "nutricao": {
+          "calorias_100g": 86,
+          "proteinas_g": 1.6,
+          "carboidratos_g": 20.1,
+          "fibras_g": 3.0,
+          "vitaminas": ["Vitamina A", "Vitamina C"],
+          "minerais": ["Potássio", "Manganês"]
+        }
+      },
+      {
+        "nome": "Mandioca",
+        "categoria": "Tubérculos",
+        "disponibilidade": "alta",
+        "preco_medio_kg": 3.80,
+        "variacao_preco": -5,
+        "nutricao": {
+          "calorias_100g": 160,
+          "proteinas_g": 1.4,
+          "carboidratos_g": 38.1,
+          "fibras_g": 1.8,
+          "vitaminas": ["Vitamina C", "Folato"],
+          "minerais": ["Potássio", "Magnésio"]
+        }
+      }
+    ]
+  }
+}

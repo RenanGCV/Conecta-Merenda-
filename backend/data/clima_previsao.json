@@ -1,0 +1,49 @@
+[
+  {
+    "id": "ALERTA001",
+    "tipo": "Chuva Intensa",
+    "severidade": "alta",
+    "regiao": "Região de Campinas",
+    "data_inicio": "2024-12-15",
+    "data_fim": "2024-12-17",
+    "descricao": "Previsão de chuvas fortes com acumulado de 80-120mm nas próximas 48h",
+    "impacto_produtos": [
+      "Hortaliças folhosas (Alface, Couve, Rúcula)",
+      "Morango",
+      "Tomate"
+    ],
+    "recomendacao": "Antecipe compras de hortaliças folhosas. Após as chuvas, haverá aumento de preço de 15-25% e redução temporária de qualidade.",
+    "producoes_afetados": ["PROD001", "PROD003", "PROD006", "PROD008"]
+  },
+  {
+    "id": "ALERTA002",
+    "tipo": "Onda de Calor",
+    "severidade": "média",
+    "regiao": "Interior de São Paulo",
+    "data_inicio": "2024-12-18",
+    "data_fim": "2024-12-22",
+    "descricao": "Temperaturas acima de 35°C esperadas para os próximos 5 dias",
+    "impacto_produtos": [
+      "Frutas tropicais (Mamão, Manga)",
+      "Melancia",
+      "Melão"
+    ],
+    "recomendacao": "Momento ideal para comprar frutas tropicais com maior doçura. Evite estoque prolongado devido à aceleração do amadurecimento.",
+    "producoes_afetados": ["PROD002", "PROD005"]
+  },
+  {
+    "id": "ALERTA003",
+    "tipo": "Seca Moderada",
+    "severidade": "baixa",
+    "regiao": "Região de Piracicaba",
+    "data_inicio": "2024-12-10",
+    "data_fim": "2024-12-20",
+    "descricao": "Período sem chuvas significativas há 15 dias, com previsão de mais 10 dias secos",
+    "impacto_produtos": [
+      "Tubérculos (Batata, Mandioca)",
+      "Abóbora"
+    ],
+    "recomendacao": "Produtos de raiz mantêm qualidade. Sem necessidade de alteração no plano de compras. Monitorar se seca se estender além de 30 dias.",
+    "producoes_afetados": ["PROD005"]
+  }
+]

@@ -1,0 +1,310 @@
+[
+  {
+    "id": "PROD001",
+    "nome": "João Silva",
+    "nome_propriedade": "Sítio Esperança",
+    "cpf": "123.456.789-00",
+    "telefone": "(11) 98765-4321",
+    "email": "joao.silva@email.com",
+    "possui_dap": true,
+    "numero_dap": "DAP-SP-2023-001234",
+    "localizacao": {
+      "endereco": "Zona Rural, s/n",
+      "cidade": "Piracicaba",
+      "estado": "SP",
+      "cep": "13400-000",
+      "latitude": -22.7253,
+      "longitude": -47.6489
+    },
+    "produtos": [
+      {"nome": "Alface", "categoria": "Hortaliças", "unidade": "maço", "preco_unitario": 3.50},
+      {"nome": "Tomate", "categoria": "Hortaliças", "unidade": "kg", "preco_unitario": 5.80},
+      {"nome": "Cenoura", "categoria": "Hortaliças", "unidade": "kg", "preco_unitario": 4.20}
+    ],
+    "avaliacao_media": 4.8,
+    "total_avaliacoes": 45,
+    "total_entregas": 120,
+    "membro_desde": "2022-03-15",
+    "foto_perfil": "assets/images/agricultor_01.jpg",
+    "certificacoes": ["Agricultura Familiar", "Produção Orgânica"],
+    "capacidade_fornecimento_mensal": "2000kg",
+    "raio_entrega_km": 80
+  },
+  {
+    "id": "PROD002",
+    "nome": "Maria Santos",
+    "nome_propriedade": "Fazenda Vida Nova",
+    "cpf": "234.567.890-11",
+    "telefone": "(11) 97654-3210",
+    "email": "maria.santos@email.com",
+    "possui_dap": true,
+    "numero_dap": "DAP-SP-2023-005678",
+    "localizacao": {
+      "endereco": "Estrada Municipal, km 12",
+      "cidade": "Rio Claro",
+      "estado": "SP",
+      "cep": "13500-000",
+      "latitude": -22.4113,
+      "longitude": -47.5616
+    },
+    "produtos": [
+      {"nome": "Banana", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 4.50},
+      {"nome": "Mamão", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 5.00},
+      {"nome": "Laranja", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 3.80}
+    ],
+    "avaliacao_media": 4.9,
+    "total_avaliacoes": 67,
+    "total_entregas": 180,
+    "membro_desde": "2021-08-20",
+    "foto_perfil": "assets/images/agricultor_02.jpg",
+    "certificacoes": ["Agricultura Familiar", "Boas Práticas Agrícolas"],
+    "capacidade_fornecimento_mensal": "3500kg",
+    "raio_entrega_km": 100
+  },
+  {
+    "id": "PROD003",
+    "nome": "Pedro Oliveira",
+    "nome_propriedade": "Chácara São José",
+    "cpf": "345.678.901-22",
+    "telefone": "(11) 96543-2109",
+    "email": "pedro.oliveira@email.com",
+    "possui_dap": true,
+    "numero_dap": "DAP-SP-2023-009012",
+    "localizacao": {
+      "endereco": "Rodovia SP-304, km 78",
+      "cidade": "Americana",
+      "estado": "SP",
+      "cep": "13465-000",
+      "latitude": -22.7389,
+      "longitude": -47.3314
+    },
+    "produtos": [
+      {"nome": "Brócolis", "categoria": "Hortaliças", "unidade": "maço", "preco_unitario": 4.80},
+      {"nome": "Couve", "categoria": "Hortaliças", "unidade": "maço", "preco_unitario": 3.20},
+      {"nome": "Beterraba", "categoria": "Hortaliças", "unidade": "kg", "preco_unitario": 4.50}
+    ],
+    "avaliacao_media": 4.6,
+    "total_avaliacoes": 34,
+    "total_entregas": 95,
+    "membro_desde": "2022-11-05",
+    "foto_perfil": "assets/images/agricultor_03.jpg",
+    "certificacoes": ["Agricultura Familiar"],
+    "capacidade_fornecimento_mensal": "1800kg",
+    "raio_entrega_km": 70
+  },
+  {
+    "id": "PROD004",
+    "nome": "Ana Costa",
+    "nome_propriedade": "Horta Comunitária Bela Vista",
+    "cpf": "456.789.012-33",
+    "telefone": "(11) 95432-1098",
+    "email": "ana.costa@email.com",
+    "possui_dap": false,
+    "numero_dap": null,
+    "localizacao": {
+      "endereco": "Rua das Flores, 456",
+      "cidade": "Campinas",
+      "estado": "SP",
+      "cep": "13050-000",
+      "latitude": -22.9099,
+      "longitude": -47.0626
+    },
+    "produtos": [
+      {"nome": "Rúcula", "categoria": "Hortaliças", "unidade": "maço", "preco_unitario": 3.00},
+      {"nome": "Agrião", "categoria": "Hortaliças", "unidade": "maço", "preco_unitario": 3.50},
+      {"nome": "Almeirão", "categoria": "Hortaliças", "unidade": "maço", "preco_unitario": 3.20}
+    ],
+    "avaliacao_media": 4.4,
+    "total_avaliacoes": 28,
+    "total_entregas": 65,
+    "membro_desde": "2023-01-10",
+    "foto_perfil": "assets/images/agricultor_04.jpg",
+    "certificacoes": ["Em processo de certificação DAP"],
+    "capacidade_fornecimento_mensal": "1200kg",
+    "raio_entrega_km": 50
+  },
+  {
+    "id": "PROD005",
+    "nome": "Carlos Mendes",
+    "nome_propriedade": "Fazenda Santa Clara",
+    "cpf": "567.890.123-44",
+    "telefone": "(11) 94321-0987",
+    "email": "carlos.mendes@email.com",
+    "possui_dap": true,
+    "numero_dap": "DAP-SP-2022-003456",
+    "localizacao": {
+      "endereco": "Estrada Velha, km 23",
+      "cidade": "Limeira",
+      "estado": "SP",
+      "cep": "13480-000",
+      "latitude": -22.5647,
+      "longitude": -47.4017
+    },
+    "produtos": [
+      {"nome": "Abóbora", "categoria": "Hortaliças", "unidade": "kg", "preco_unitario": 3.80},
+      {"nome": "Mandioca", "categoria": "Tubérculos", "unidade": "kg", "preco_unitario": 4.00},
+      {"nome": "Batata Doce", "categoria": "Tubérculos", "unidade": "kg", "preco_unitario": 4.50}
+    ],
+    "avaliacao_media": 4.7,
+    "total_avaliacoes": 52,
+    "total_entregas": 145,
+    "membro_desde": "2021-05-12",
+    "foto_perfil": "assets/images/agricultor_05.jpg",
+    "certificacoes": ["Agricultura Familiar", "GlobalGAP"],
+    "capacidade_fornecimento_mensal": "2800kg",
+    "raio_entrega_km": 90
+  },
+  {
+    "id": "PROD006",
+    "nome": "Fernanda Lima",
+    "nome_propriedade": "Sítio Recanto Verde",
+    "cpf": "678.901.234-55",
+    "telefone": "(11) 93210-9876",
+    "email": "fernanda.lima@email.com",
+    "possui_dap": true,
+    "numero_dap": "DAP-SP-2023-007890",
+    "localizacao": {
+      "endereco": "Zona Rural, Bairro dos Pires",
+      "cidade": "Santa Bárbara d'Oeste",
+      "estado": "SP",
+      "cep": "13450-000",
+      "latitude": -22.7536,
+      "longitude": -47.4138
+    },
+    "produtos": [
+      {"nome": "Morango", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 12.00},
+      {"nome": "Framboesa", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 18.00},
+      {"nome": "Amora", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 15.00}
+    ],
+    "avaliacao_media": 5.0,
+    "total_avaliacoes": 89,
+    "total_entregas": 210,
+    "membro_desde": "2020-09-30",
+    "foto_perfil": "assets/images/agricultor_06.jpg",
+    "certificacoes": ["Agricultura Familiar", "Produção Orgânica", "Fair Trade"],
+    "capacidade_fornecimento_mensal": "1500kg",
+    "raio_entrega_km": 75
+  },
+  {
+    "id": "PROD007",
+    "nome": "Roberto Alves",
+    "nome_propriedade": "Granja Feliz",
+    "cpf": "789.012.345-66",
+    "telefone": "(11) 92109-8765",
+    "email": "roberto.alves@email.com",
+    "possui_dap": true,
+    "numero_dap": "DAP-SP-2022-002345",
+    "localizacao": {
+      "endereco": "Sítio Boa Vista",
+      "cidade": "Sumaré",
+      "estado": "SP",
+      "cep": "13170-000",
+      "latitude": -22.8219,
+      "longitude": -47.2669
+    },
+    "produtos": [
+      {"nome": "Ovos Caipira", "categoria": "Proteínas", "unidade": "dúzia", "preco_unitario": 8.50},
+      {"nome": "Frango Caipira", "categoria": "Proteínas", "unidade": "kg", "preco_unitario": 16.00}
+    ],
+    "avaliacao_media": 4.8,
+    "total_avaliacoes": 76,
+    "total_entregas": 165,
+    "membro_desde": "2021-12-01",
+    "foto_perfil": "assets/images/agricultor_07.jpg",
+    "certificacoes": ["Agricultura Familiar", "Bem-estar Animal"],
+    "capacidade_fornecimento_mensal": "2500 dúzias de ovos",
+    "raio_entrega_km": 85
+  },
+  {
+    "id": "PROD008",
+    "nome": "Juliana Ferreira",
+    "nome_propriedade": "Horta Orgânica Terra Viva",
+    "cpf": "890.123.456-77",
+    "telefone": "(11) 91098-7654",
+    "email": "juliana.ferreira@email.com",
+    "possui_dap": true,
+    "numero_dap": "DAP-SP-2023-004567",
+    "localizacao": {
+      "endereco": "Estrada Municipal José Silva, km 8",
+      "cidade": "Hortolândia",
+      "estado": "SP",
+      "cep": "13184-000",
+      "latitude": -22.8581,
+      "longitude": -47.2200
+    },
+    "produtos": [
+      {"nome": "Espinafre", "categoria": "Hortaliças", "unidade": "maço", "preco_unitario": 3.80},
+      {"nome": "Acelga", "categoria": "Hortaliças", "unidade": "maço", "preco_unitario": 3.50},
+      {"nome": "Couve-flor", "categoria": "Hortaliças", "unidade": "unidade", "preco_unitario": 5.50}
+    ],
+    "avaliacao_media": 4.9,
+    "total_avaliacoes": 61,
+    "total_entregas": 138,
+    "membro_desde": "2022-06-18",
+    "foto_perfil": "assets/images/agricultor_08.jpg",
+    "certificacoes": ["Agricultura Familiar", "Produção Orgânica", "IBD Certificações"],
+    "capacidade_fornecimento_mensal": "2200kg",
+    "raio_entrega_km": 95
+  },
+  {
+    "id": "PROD009",
+    "nome": "Marcos Souza",
+    "nome_propriedade": "Apiário Doce Mel",
+    "cpf": "901.234.567-88",
+    "telefone": "(11) 90987-6543",
+    "email": "marcos.souza@email.com",
+    "possui_dap": false,
+    "numero_dap": null,
+    "localizacao": {
+      "endereco": "Chácara dos Pinheiros",
+      "cidade": "Indaiatuba",
+      "estado": "SP",
+      "cep": "13330-000",
+      "latitude": -23.0903,
+      "longitude": -47.2180
+    },
+    "produtos": [
+      {"nome": "Mel", "categoria": "Outros", "unidade": "kg", "preco_unitario": 25.00},
+      {"nome": "Própolis", "categoria": "Outros", "unidade": "frasco 30ml", "preco_unitario": 15.00}
+    ],
+    "avaliacao_media": 4.7,
+    "total_avaliacoes": 42,
+    "total_entregas": 78,
+    "membro_desde": "2022-09-22",
+    "foto_perfil": "assets/images/agricultor_09.jpg",
+    "certificacoes": ["Selo SIF"],
+    "capacidade_fornecimento_mensal": "300kg de mel",
+    "raio_entrega_km": 60
+  },
+  {
+    "id": "PROD010",
+    "nome": "Luciana Ribeiro",
+    "nome_propriedade": "Fazenda Bom Jardim",
+    "cpf": "012.345.678-99",
+    "telefone": "(11) 99876-5432",
+    "email": "luciana.ribeiro@email.com",
+    "possui_dap": true,
+    "numero_dap": "DAP-SP-2021-008901",
+    "localizacao": {
+      "endereco": "Rodovia dos Bandeirantes, km 102",
+      "cidade": "Jundiaí",
+      "estado": "SP",
+      "cep": "13200-000",
+      "latitude": -23.1864,
+      "longitude": -46.8977
+    },
+    "produtos": [
+      {"nome": "Uva", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 8.00},
+      {"nome": "Pêssego", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 9.50},
+      {"nome": "Ameixa", "categoria": "Frutas", "unidade": "kg", "preco_unitario": 10.00}
+    ],
+    "avaliacao_media": 4.8,
+    "total_avaliacoes": 93,
+    "total_entregas": 198,
+    "membro_desde": "2020-04-15",
+    "foto_perfil": "assets/images/agricultor_10.jpg",
+    "certificacoes": ["Agricultura Familiar", "Produção Integrada de Frutas"],
+    "capacidade_fornecimento_mensal": "3200kg",
+    "raio_entrega_km": 110
+  }
+]

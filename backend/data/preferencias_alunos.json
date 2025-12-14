@@ -1,0 +1,151 @@
+{
+  "escola_id": "ESC001",
+  "periodo_analise": "Últimos 30 dias",
+  "preferencias_alunos": [
+    {
+      "alimento": "Arroz com feijão",
+      "score_aceitacao": 9.2,
+      "vezes_servido": 45,
+      "percentual_consumo": 92,
+      "categoria": "Carboidratos + Proteínas"
+    },
+    {
+      "alimento": "Frango grelhado",
+      "score_aceitacao": 8.8,
+      "vezes_servido": 30,
+      "percentual_consumo": 88,
+      "categoria": "Proteínas"
+    },
+    {
+      "alimento": "Batata frita",
+      "score_aceitacao": 9.5,
+      "vezes_servido": 20,
+      "percentual_consumo": 95,
+      "categoria": "Carboidratos",
+      "nota": "Muito aceito mas não deve ser frequente"
+    },
+    {
+      "alimento": "Macarrão com molho",
+      "score_aceitacao": 8.5,
+      "vezes_servido": 38,
+      "percentual_consumo": 85,
+      "categoria": "Carboidratos"
+    },
+    {
+      "alimento": "Salada de alface e tomate",
+      "score_aceitacao": 6.5,
+      "vezes_servido": 50,
+      "percentual_consumo": 60,
+      "categoria": "Hortaliças"
+    },
+    {
+      "alimento": "Jiló refogado",
+      "score_aceitacao": 2.8,
+      "vezes_servido": 8,
+      "percentual_consumo": 25,
+      "categoria": "Hortaliças",
+      "nota": "Muito rejeitado - considerar receitas alternativas"
+    },
+    {
+      "alimento": "Espinafre refogado",
+      "score_aceitacao": 3.5,
+      "vezes_servido": 12,
+      "percentual_consumo": 35,
+      "categoria": "Hortaliças",
+      "nota": "Rejeitado mas nutritivo - usar em receitas disfarçadas"
+    },
+    {
+      "alimento": "Chuchu cozido",
+      "score_aceitacao": 4.2,
+      "vezes_servido": 15,
+      "percentual_consumo": 42,
+      "categoria": "Hortaliças"
+    },
+    {
+      "alimento": "Banana",
+      "score_aceitacao": 8.9,
+      "vezes_servido": 55,
+      "percentual_consumo": 89,
+      "categoria": "Frutas"
+    },
+    {
+      "alimento": "Melancia",
+      "score_aceitacao": 9.3,
+      "vezes_servido": 40,
+      "percentual_consumo": 93,
+      "categoria": "Frutas"
+    },
+    {
+      "alimento": "Suco natural",
+      "score_aceitacao": 9.0,
+      "vezes_servido": 60,
+      "percentual_consumo": 90,
+      "categoria": "Bebidas"
+    }
+  ],
+  "alimentos_rejeitados_nutritivos": [
+    {
+      "alimento": "Jiló",
+      "motivo_rejeicao": "Sabor amargo, textura",
+      "valor_nutricional": "Rico em fibras, vitaminas A e C, cálcio",
+      "receitas_alternativas": [
+        "Farofa de jiló picadinho",
+        "Jiló empanado",
+        "Jiló recheado com queijo",
+        "Bolinho de jiló com temperos"
+      ]
+    },
+    {
+      "alimento": "Espinafre",
+      "motivo_rejeicao": "Cor verde escura, textura mole",
+      "valor_nutricional": "Ferro, ácido fólico, vitaminas A e K",
+      "receitas_alternativas": [
+        "Torta de espinafre",
+        "Bolinho de espinafre com queijo",
+        "Espinafre na lasanha",
+        "Panqueca verde (espinafre batido na massa)",
+        "Suco verde adoçado com frutas"
+      ]
+    },
+    {
+      "alimento": "Beterraba",
+      "motivo_rejeicao": "Cor forte, sabor terroso",
+      "valor_nutricional": "Ferro, ácido fólico, antioxidantes",
+      "receitas_alternativas": [
+        "Bolo de chocolate com beterraba",
+        "Hambúrguer de beterraba",
+        "Suco de beterraba com laranja",
+        "Chips de beterraba assada"
+      ]
+    },
+    {
+      "alimento": "Chuchu",
+      "motivo_rejeicao": "Sabor neutro, textura mole",
+      "valor_nutricional": "Fibras, vitamina C, baixa caloria",
+      "receitas_alternativas": [
+        "Chuchu gratinado",
+        "Torta salgada de chuchu",
+        "Creme de chuchu",
+        "Salada de chuchu cru ralado"
+      ]
+    },
+    {
+      "alimento": "Fígado",
+      "motivo_rejeicao": "Sabor forte, textura",
+      "valor_nutricional": "Ferro, vitamina A, proteínas",
+      "receitas_alternativas": [
+        "Fígado acebolado com bacon",
+        "Patê de fígado",
+        "Bolinho de fígado",
+        "Substituir por frango temperado"
+      ]
+    }
+  ],
+  "recomendacoes_gerais": [
+    "Alimentos rejeitados mas nutritivos devem ser mantidos, usando preparos criativos",
+    "Combinar alimentos menos aceitos com os que as crianças gostam",
+    "Apresentação visual é importante - cores variadas, formatos divertidos",
+    "Envolver as crianças no preparo aumenta aceitação",
+    "Educação nutricional paralela ao cardápio"
+  ]
+}

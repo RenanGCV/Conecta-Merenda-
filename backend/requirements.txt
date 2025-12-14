@@ -1,0 +1,28 @@
+# FastAPI e servidor
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.20
+
+# Segurança e autenticação
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dotenv==1.0.1
+pydantic[email]==2.10.3
+pydantic-settings==2.6.1
+
+# IA e Machine Learning
+openai==1.55.3
+tiktoken==0.8.0
+
+# Geolocalização
+geopy==2.4.1
+
+# QR Code e PDF
+qrcode[pil]==7.4.2
+reportlab==4.0.7
+
+# Utilitários
+aiofiles==23.2.1
+
+# CORS e segurança
+slowapi==0.1.9
