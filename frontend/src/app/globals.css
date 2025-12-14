@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   CONECTA MERENDA - Design System
+   Baseado no Manual da Marca v1.0
+   ======================================== */
+
+:root {
+  /* --- Cores Institucionais --- */
+  --c-stroke: #0B4F35;
+  --c-bg: #FFFDF5;
+  --c-surface: #FFFFFF;
+  
+  /* --- Cores de Ação --- */
+  --c-primary: #9BC53D;
+  --c-accent: #F47C20;
+  --c-danger: #E04F38;
+  --c-warning: #FCCE38;
+  --c-success: #2E7D32;
+  
+  /* --- Neutras --- */
+  --c-text-main: #1A1A1A;
+  --c-text-muted: #666666;
+  --c-border: #E0E0E0;
+  --c-off-white: #F4F7F5;
+  
+  /* --- Estilização Cartoon --- */
+  --border-thick: 3px solid var(--c-stroke);
+  --shadow-hard: 4px 4px 0px var(--c-stroke);
+  --shadow-hard-hover: 6px 6px 0px var(--c-stroke);
+  
+  /* --- Arredondamento --- */
+  --radius-card: 24px;
+  --radius-btn: 50px;
+  --radius-input: 12px;
+  
+  /* --- Tipografia --- */
+  --font-display: 'Nunito', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ======== BASE STYLES ======== */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  background-color: var(--c-bg);
+  color: var(--c-text-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--c-stroke);
+}
+
+/* ======== COMPONENTES UTILITÁRIOS ======== */
+
+@layer components {
+  /* Card estilo Conecta Merenda */
+  .card-conecta {
+    @apply bg-white rounded-card p-6;
+    border: var(--border-thick);
+    box-shadow: var(--shadow-hard);
+    transition: all 0.2s ease;
+  }
+  
+  .card-conecta:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hard-hover);
+  }
+
+  /* Botão Primário */
+  .btn-primary {
+    @apply px-6 py-3 font-display font-bold text-white;
+    background-color: var(--c-stroke);
+    border-radius: var(--radius-btn);
+    border: 3px solid var(--c-stroke);
+    box-shadow: var(--shadow-hard);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hard-hover);
+  }
+  
+  .btn-primary:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--c-stroke);
+  }
+
+  /* Botão Secundário */
+  .btn-secondary {
+    @apply px-6 py-3 font-display font-bold;
+    background-color: var(--c-surface);
+    color: var(--c-stroke);
+    border-radius: var(--radius-btn);
+    border: 3px solid var(--c-stroke);
+    box-shadow: var(--shadow-hard);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--c-primary);
+    color: var(--c-stroke);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hard-hover);
+  }
+
+  /* Botão de Ação (Verde Claro) */
+  .btn-action {
+    @apply px-6 py-3 font-display font-bold;
+    background-color: var(--c-primary);
+    color: var(--c-stroke);
+    border-radius: var(--radius-btn);
+    border: 3px solid var(--c-stroke);
+    box-shadow: var(--shadow-hard);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .btn-action:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hard-hover);
+  }
+
+  /* Botão Danger */
+  .btn-danger {
+    @apply px-6 py-3 font-display font-bold text-white;
+    background-color: var(--c-danger);
+    border-radius: var(--radius-btn);
+    border: 3px solid var(--c-stroke);
+    box-shadow: var(--shadow-hard);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  /* Input estilo Conecta */
+  .input-conecta {
+    @apply w-full px-4 py-3 font-body text-base;
+    background-color: var(--c-surface);
+    border-radius: var(--radius-input);
+    border: 3px solid var(--c-stroke);
+    transition: all 0.2s ease;
+  }
+  
+  .input-conecta:focus {
+    outline: none;
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 3px rgba(155, 197, 61, 0.3);
+  }
+  
+  .input-conecta::placeholder {
+    color: var(--c-text-muted);
+  }
+
+  /* Badge/Tag */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 font-display font-bold text-sm;
+    border-radius: var(--radius-btn);
+    border: 2px solid var(--c-stroke);
+  }
+  
+  .badge-success {
+    @apply badge;
+    background-color: var(--c-primary);
+    color: var(--c-stroke);
+  }
+  
+  .badge-warning {
+    @apply badge;
+    background-color: var(--c-warning);
+    color: var(--c-stroke);
+  }
+  
+  .badge-danger {
+    @apply badge;
+    background-color: var(--c-danger);
+    color: white;
+  }
+  
+  .badge-info {
+    @apply badge;
+    background-color: var(--c-accent);
+    color: white;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    @apply fixed left-0 top-0 h-full w-64 p-4;
+    background-color: var(--c-stroke);
+    z-index: 100;
+  }
+  
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl font-display font-semibold text-white/80;
+    transition: all 0.2s ease;
+  }
+  
+  .sidebar-item:hover,
+  .sidebar-item.active {
+    @apply bg-white/10 text-white;
+  }
+  
+  .sidebar-item.active {
+    background-color: var(--c-primary);
+    color: var(--c-stroke);
+  }
+
+  /* Alert Box */
+  .alert {
+    @apply p-4 rounded-xl font-body;
+    border: 3px solid var(--c-stroke);
+  }
+  
+  .alert-success {
+    @apply alert;
+    background-color: rgba(155, 197, 61, 0.2);
+  }
+  
+  .alert-warning {
+    @apply alert;
+    background-color: rgba(244, 124, 32, 0.2);
+  }
+  
+  .alert-danger {
+    @apply alert;
+    background-color: rgba(224, 79, 56, 0.2);
+  }
+  
+  .alert-info {
+    @apply alert;
+    background-color: rgba(252, 206, 56, 0.2);
+  }
+
+  /* Stat Card */
+  .stat-card {
+    @apply card-conecta flex flex-col gap-2;
+  }
+  
+  .stat-card .stat-value {
+    @apply font-display text-3xl font-black;
+    color: var(--c-stroke);
+  }
+  
+  .stat-card .stat-label {
+    @apply font-body text-sm font-medium;
+    color: var(--c-text-muted);
+  }
+}
+
+/* ======== ANIMAÇÕES ======== */
+
+@keyframes bounce-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(155, 197, 61, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px rgba(155, 197, 61, 0.4);
+  }
+}
+
+.animate-bounce-soft {
+  animation: bounce-soft 2s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* ======== SCROLLBAR CUSTOMIZADA ======== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--c-off-white);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-stroke);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-primary);
+}
+
+/* ======== LEAFLET MAP OVERRIDES ======== */
+
+.leaflet-container {
+  border-radius: var(--radius-card);
+  border: var(--border-thick);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 16px !important;
+  border: 2px solid var(--c-stroke) !important;
+  font-family: var(--font-body) !important;
+}
+
+/* ======== LOADING SPINNER ======== */
+
+.spinner {
+  @apply w-8 h-8 border-4 rounded-full animate-spin;
+  border-color: var(--c-primary);
+  border-top-color: var(--c-stroke);
+}
+
+/* ======== TOOLTIP ======== */
+
+.tooltip {
+  @apply absolute z-50 px-3 py-2 font-body text-sm text-white rounded-lg;
+  background-color: var(--c-stroke);
+  white-space: nowrap;
+}
+
+.tooltip::before {
+  content: '';
+  @apply absolute w-2 h-2 -bottom-1 left-1/2 -translate-x-1/2 rotate-45;
+  background-color: var(--c-stroke);
+}
