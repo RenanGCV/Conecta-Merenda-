@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { Sidebar, Header } from './Sidebar';
 import { User } from '@/types';
 
@@ -32,10 +33,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-creme-papel">
         <div className="text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-4xl animate-bounce" style={{ animationDelay: '0ms' }}>🥦</span>
-            <span className="text-4xl animate-bounce" style={{ animationDelay: '150ms' }}>🍅</span>
-            <span className="text-4xl animate-bounce" style={{ animationDelay: '300ms' }}>🥕</span>
+          <div className="flex items-center justify-center mb-4">
+            <Image
+              src="/logo.png"
+              alt="Conecta Merenda"
+              width={120}
+              height={120}
+              className="animate-pulse"
+              priority
+            />
           </div>
           <div className="w-10 h-10 border-4 border-verde-brocolis border-t-verde-conecta rounded-full animate-spin mx-auto mb-4" />
           <p className="font-display font-bold text-verde-conecta">Carregando...</p>

@@ -24,6 +24,7 @@ import {
   Select,
   Spinner,
   Modal,
+  OpenAIBadge,
 } from '@/components/ui';
 import { escolasService } from '@/services/api';
 import toast from 'react-hot-toast';
@@ -138,10 +139,13 @@ export default function EscolaSugestoes() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="font-display font-black text-3xl text-verde-conecta flex items-center gap-3">
-              <Sparkles className="w-8 h-8 text-laranja-cenoura" />
-              Sugestões da IA
-            </h1>
+            <div className="flex items-center gap-3 mb-1">
+              <h1 className="font-display font-black text-3xl text-verde-conecta flex items-center gap-3">
+                <Sparkles className="w-8 h-8 text-laranja-cenoura" />
+                Sugestões da IA
+              </h1>
+              <OpenAIBadge variant="light" size="sm" />
+            </div>
             <p className="font-body text-text-muted">
               Recomendações inteligentes para economizar e nutrir melhor
             </p>
@@ -382,6 +386,11 @@ export default function EscolaSugestoes() {
               A IA vai analisar os dados de safra, nutrição e preços para
               sugerir a melhor alternativa para você!
             </p>
+          </div>
+
+          {/* OpenAI Sponsor Badge */}
+          <div className="flex justify-center pt-2">
+            <OpenAIBadge variant="light" size="sm" />
           </div>
         </div>
       </Modal>

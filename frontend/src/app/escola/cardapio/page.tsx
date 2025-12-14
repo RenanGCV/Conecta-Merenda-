@@ -1,179 +1,225 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Calendar,
   Sparkles,
-  Plus,
   ChefHat,
   Leaf,
-  Sun,
-  CloudRain,
   DollarSign,
   Users,
   Check,
-  Edit,
-  Trash2,
+  ChevronLeft,
+  ChevronRight,
+  RefreshCw,
 } from 'lucide-react';
 import { DashboardLayout } from '@/components/layout';
 import {
   Card,
   CardHeader,
-  CardTitle,
   CardContent,
   Button,
   Badge,
   Modal,
-  Spinner,
   Select,
+  OpenAIBadge,
 } from '@/components/ui';
 import toast from 'react-hot-toast';
 
 interface RefeicoaoDia {
   dia: string;
   diaSemana: string;
+  data: Date;
   pratos: Array<{
     tipo: string;
     nome: string;
     ingredientes: string[];
     emSafra: boolean;
+    geradoPorIA?: boolean;
   }>;
 }
 
-const CARDAPIO_SEMANA: RefeicoaoDia[] = [
-  {
-    dia: '16/12',
-    diaSemana: 'Segunda',
-    pratos: [
-      {
-        tipo: 'Principal',
-        nome: 'Arroz com Feijão e Frango Desfiado',
-        ingredientes: ['Arroz', 'Feijão', 'Frango', 'Alho', 'Cebola'],
+// Gera cardápio mock para uma semana específica
+function gerarCardapioSemana(inicioSemana: Date): RefeicoaoDia[] {
+  const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+  const pratos = [
+    {
+      tipo: 'Principal',
+      opcoes: [
+        { nome: 'Arroz com Feijão e Frango Desfiado', ingredientes: ['Arroz', 'Feijão', 'Frango'] },
+        { nome: 'Macarrão ao Sugo com Carne Moída', ingredientes: ['Macarrão', 'Molho de tomate', 'Carne moída'] },
+        { nome: 'Arroz com Feijão e Omelete', ingredientes: ['Arroz', 'Feijão', 'Ovos', 'Tomate'] },
+        { nome: 'Sopa de Legumes com Frango', ingredientes: ['Frango', 'Batata', 'Cenoura', 'Abobrinha'] },
+        { nome: 'Arroz com Lentilha e Legumes', ingredientes: ['Arroz', 'Lentilha', 'Cenoura', 'Brócolis'] },
+      ],
+    },
+    {
+      tipo: 'Salada',
+      opcoes: [
+        { nome: 'Salada de Alface e Tomate', ingredientes: ['Alface', 'Tomate'] },
+        { nome: 'Beterraba Ralada', ingredientes: ['Beterraba'] },
+        { nome: 'Couve Refogada', ingredientes: ['Couve', 'Alho'] },
+        { nome: 'Cenoura Ralada', ingredientes: ['Cenoura'] },
+        { nome: 'Salada Verde', ingredientes: ['Alface', 'Rúcula', 'Pepino'] },
+      ],
+    },
+    {
+      tipo: 'Sobremesa',
+      opcoes: [
+        { nome: 'Banana', ingredientes: ['Banana'] },
+        { nome: 'Laranja', ingredientes: ['Laranja'] },
+        { nome: 'Mamão', ingredientes: ['Mamão'] },
+        { nome: 'Morango', ingredientes: ['Morango'] },
+        { nome: 'Melancia', ingredientes: ['Melancia'] },
+      ],
+    },
+  ];
+
+  return dias.map((diaSemana, idx) => {
+    const data = new Date(inicioSemana);
+    data.setDate(data.getDate() + idx);
+    
+    return {
+      dia: data.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }),
+      diaSemana,
+      data,
+      pratos: pratos.map((tipo) => ({
+        tipo: tipo.tipo,
+        ...tipo.opcoes[idx],
+        emSafra: Math.random() > 0.3,
+      })),
+    };
+  });
+}
+
+// Cardápios gerados pela IA (mais saudáveis e na safra)
+function gerarCardapioIA(inicioSemana: Date): RefeicoaoDia[] {
+  const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+  
+  const pratosIA = [
+    {
+      pratos: [
+        { tipo: 'Principal', nome: 'Risoto de Abóbora com Frango', ingredientes: ['Arroz', 'Abóbora', 'Frango', 'Queijo'] },
+        { tipo: 'Salada', nome: 'Mix de Folhas com Manga', ingredientes: ['Alface', 'Rúcula', 'Manga', 'Limão'] },
+        { tipo: 'Sobremesa', nome: 'Salada de Frutas', ingredientes: ['Manga', 'Mamão', 'Banana', 'Laranja'] },
+      ],
+    },
+    {
+      pratos: [
+        { tipo: 'Principal', nome: 'Escondidinho de Mandioca', ingredientes: ['Mandioca', 'Carne moída', 'Queijo'] },
+        { tipo: 'Salada', nome: 'Beterraba com Cenoura', ingredientes: ['Beterraba', 'Cenoura', 'Limão'] },
+        { tipo: 'Sobremesa', nome: 'Mousse de Maracujá', ingredientes: ['Maracujá', 'Leite condensado'] },
+      ],
+    },
+    {
+      pratos: [
+        { tipo: 'Principal', nome: 'Feijão Tropeiro com Couve', ingredientes: ['Feijão', 'Bacon', 'Ovos', 'Couve'] },
+        { tipo: 'Salada', nome: 'Tomate com Manjericão', ingredientes: ['Tomate', 'Manjericão', 'Azeite'] },
+        { tipo: 'Sobremesa', nome: 'Banana Assada com Canela', ingredientes: ['Banana', 'Canela', 'Mel'] },
+      ],
+    },
+    {
+      pratos: [
+        { tipo: 'Principal', nome: 'Cuscuz Paulista Nutritivo', ingredientes: ['Farinha de milho', 'Sardinha', 'Ovos'] },
+        { tipo: 'Salada', nome: 'Pepino com Hortelã', ingredientes: ['Pepino', 'Hortelã', 'Iogurte'] },
+        { tipo: 'Sobremesa', nome: 'Gelatina de Morango', ingredientes: ['Morango', 'Gelatina'] },
+      ],
+    },
+    {
+      pratos: [
+        { tipo: 'Principal', nome: 'Panqueca de Legumes', ingredientes: ['Farinha', 'Ovos', 'Cenoura', 'Abobrinha'] },
+        { tipo: 'Salada', nome: 'Coleslaw Brasileiro', ingredientes: ['Repolho', 'Cenoura', 'Maionese light'] },
+        { tipo: 'Sobremesa', nome: 'Laranja com Canela', ingredientes: ['Laranja', 'Canela'] },
+      ],
+    },
+  ];
+
+  return dias.map((diaSemana, idx) => {
+    const data = new Date(inicioSemana);
+    data.setDate(data.getDate() + idx);
+    
+    return {
+      dia: data.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }),
+      diaSemana,
+      data,
+      pratos: pratosIA[idx].pratos.map((p) => ({
+        ...p,
         emSafra: true,
-      },
-      {
-        tipo: 'Salada',
-        nome: 'Salada de Alface e Tomate',
-        ingredientes: ['Alface', 'Tomate'],
-        emSafra: true,
-      },
-      {
-        tipo: 'Sobremesa',
-        nome: 'Banana',
-        ingredientes: ['Banana'],
-        emSafra: true,
-      },
-    ],
-  },
-  {
-    dia: '17/12',
-    diaSemana: 'Terça',
-    pratos: [
-      {
-        tipo: 'Principal',
-        nome: 'Macarrão ao Sugo com Carne Moída',
-        ingredientes: ['Macarrão', 'Molho de tomate', 'Carne moída'],
-        emSafra: true,
-      },
-      {
-        tipo: 'Salada',
-        nome: 'Beterraba Ralada',
-        ingredientes: ['Beterraba'],
-        emSafra: false,
-      },
-      {
-        tipo: 'Sobremesa',
-        nome: 'Laranja',
-        ingredientes: ['Laranja'],
-        emSafra: true,
-      },
-    ],
-  },
-  {
-    dia: '18/12',
-    diaSemana: 'Quarta',
-    pratos: [
-      {
-        tipo: 'Principal',
-        nome: 'Arroz com Feijão e Omelete',
-        ingredientes: ['Arroz', 'Feijão', 'Ovos', 'Tomate'],
-        emSafra: true,
-      },
-      {
-        tipo: 'Salada',
-        nome: 'Couve Refogada',
-        ingredientes: ['Couve', 'Alho'],
-        emSafra: true,
-      },
-      {
-        tipo: 'Sobremesa',
-        nome: 'Mamão',
-        ingredientes: ['Mamão'],
-        emSafra: true,
-      },
-    ],
-  },
-  {
-    dia: '19/12',
-    diaSemana: 'Quinta',
-    pratos: [
-      {
-        tipo: 'Principal',
-        nome: 'Sopa de Legumes com Frango',
-        ingredientes: ['Frango', 'Batata', 'Cenoura', 'Abobrinha', 'Macarrão'],
-        emSafra: true,
-      },
-      {
-        tipo: 'Acompanhamento',
-        nome: 'Pão Francês',
-        ingredientes: ['Pão'],
-        emSafra: true,
-      },
-      {
-        tipo: 'Sobremesa',
-        nome: 'Morango',
-        ingredientes: ['Morango'],
-        emSafra: true,
-      },
-    ],
-  },
-  {
-    dia: '20/12',
-    diaSemana: 'Sexta',
-    pratos: [
-      {
-        tipo: 'Principal',
-        nome: 'Arroz com Lentilha e Legumes',
-        ingredientes: ['Arroz', 'Lentilha', 'Cenoura', 'Brócolis'],
-        emSafra: true,
-      },
-      {
-        tipo: 'Salada',
-        nome: 'Salada Verde',
-        ingredientes: ['Alface', 'Rúcula', 'Pepino'],
-        emSafra: true,
-      },
-      {
-        tipo: 'Sobremesa',
-        nome: 'Melancia',
-        ingredientes: ['Melancia'],
-        emSafra: true,
-      },
-    ],
-  },
-];
+        geradoPorIA: true,
+      })),
+    };
+  });
+}
+
+function getInicioSemana(data: Date): Date {
+  const d = new Date(data);
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+  d.setDate(diff);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
+function formatarPeriodoSemana(inicio: Date): string {
+  const fim = new Date(inicio);
+  fim.setDate(fim.getDate() + 4);
+  const formatoInicio = inicio.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+  const formatoFim = fim.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+  return `${formatoInicio} - ${formatoFim}`;
+}
+
+function getNumeroSemana(data: Date): number {
+  const inicio = new Date(data.getFullYear(), 0, 1);
+  const diff = data.getTime() - inicio.getTime();
+  const umDia = 1000 * 60 * 60 * 24;
+  return Math.ceil((diff / umDia + inicio.getDay() + 1) / 7);
+}
 
 export default function EscolaCardapio() {
-  const [cardapio, setCardapio] = useState(CARDAPIO_SEMANA);
+  const [semanaAtual, setSemanaAtual] = useState(() => getInicioSemana(new Date()));
+  const [cardapiosGerados, setCardapiosGerados] = useState<Record<string, RefeicoaoDia[]>>({});
   const [modalGerar, setModalGerar] = useState(false);
   const [gerando, setGerando] = useState(false);
-  const [semana, setSemana] = useState('2025-W51');
+  const [restricao, setRestricao] = useState('');
+
+  const chaveSemana = semanaAtual.toISOString().split('T')[0];
+
+  const cardapio = useMemo(() => {
+    if (cardapiosGerados[chaveSemana]) {
+      return cardapiosGerados[chaveSemana];
+    }
+    return gerarCardapioSemana(semanaAtual);
+  }, [chaveSemana, cardapiosGerados, semanaAtual]);
+
+  const navegarSemana = (direcao: 'anterior' | 'proxima') => {
+    setSemanaAtual((atual) => {
+      const nova = new Date(atual);
+      nova.setDate(nova.getDate() + (direcao === 'anterior' ? -7 : 7));
+      return nova;
+    });
+  };
+
+  const irParaHoje = () => {
+    setSemanaAtual(getInicioSemana(new Date()));
+  };
+
+  const isSemanAtual = useMemo(() => {
+    const hojeInicio = getInicioSemana(new Date());
+    return semanaAtual.getTime() === hojeInicio.getTime();
+  }, [semanaAtual]);
+
+  const isCardapioIA = !!cardapiosGerados[chaveSemana];
 
   const handleGerarCardapio = async () => {
     setGerando(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      toast.success('Cardápio da semana gerado pela IA! 🤖');
+      await new Promise((resolve) => setTimeout(resolve, 2500));
+      const novoCardapio = gerarCardapioIA(semanaAtual);
+      setCardapiosGerados((prev) => ({
+        ...prev,
+        [chaveSemana]: novoCardapio,
+      }));
+      toast.success('Cardápio gerado com sucesso pela IA! 🤖✨');
       setModalGerar(false);
     } catch (error) {
       toast.error('Erro ao gerar cardápio');
@@ -185,7 +231,6 @@ export default function EscolaCardapio() {
   const totalProdutosSafra = cardapio.reduce((acc, dia) => {
     return acc + dia.pratos.filter((p) => p.emSafra).length;
   }, 0);
-
   const totalPratos = cardapio.reduce((acc, dia) => acc + dia.pratos.length, 0);
   const percentualSafra = Math.round((totalProdutosSafra / totalPratos) * 100);
 
@@ -203,27 +248,65 @@ export default function EscolaCardapio() {
             </p>
           </div>
 
-          <div className="flex gap-3">
-            <input
-              type="week"
-              value={semana}
-              onChange={(e) => setSemana(e.target.value)}
-              className="px-4 py-2 border-3 border-verde-conecta rounded-xl font-body"
-            />
-            <Button
-              variant="action"
-              onClick={() => setModalGerar(true)}
-              icon={<Sparkles className="w-5 h-5" />}
+          <Button
+            variant="action"
+            onClick={() => setModalGerar(true)}
+            icon={<Sparkles className="w-5 h-5" />}
+          >
+            Gerar com IA
+          </Button>
+        </div>
+
+        {/* Seletor de Semana */}
+        <div className="bg-verde-conecta text-white rounded-[24px] border-3 border-verde-conecta shadow-hard p-4">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => navegarSemana('anterior')}
+              className="p-3 rounded-xl hover:bg-white/20 transition-colors"
             >
-              Gerar com IA
-            </Button>
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            <div className="text-center flex-1">
+              <div className="flex items-center justify-center gap-3 mb-1">
+                <Calendar className="w-5 h-5" />
+                <span className="font-display font-bold text-xl">
+                  Semana {getNumeroSemana(semanaAtual)}
+                </span>
+                {isCardapioIA && (
+                  <Badge variant="warning" size="sm">
+                    <Sparkles className="w-3 h-3 mr-1" />
+                    IA
+                  </Badge>
+                )}
+              </div>
+              <p className="font-body text-white/80">
+                {formatarPeriodoSemana(semanaAtual)}
+              </p>
+              {!isSemanAtual && (
+                <button
+                  onClick={irParaHoje}
+                  className="mt-2 text-sm font-body text-verde-brocolis hover:text-white flex items-center gap-1 mx-auto"
+                >
+                  <RefreshCw className="w-4 h-4" />
+                  Voltar para semana atual
+                </button>
+              )}
+            </div>
+
+            <button
+              onClick={() => navegarSemana('proxima')}
+              className="p-3 rounded-xl hover:bg-white/20 transition-colors"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
           </div>
         </div>
 
         {/* Cards de Resumo */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card>
-            <CardContent className="flex items-center gap-4">
+            <CardContent className="flex items-center gap-4 py-4">
               <div className="w-12 h-12 rounded-full bg-verde-brocolis/20 flex items-center justify-center">
                 <ChefHat className="w-6 h-6 text-verde-conecta" />
               </div>
@@ -237,7 +320,7 @@ export default function EscolaCardapio() {
           </Card>
 
           <Card>
-            <CardContent className="flex items-center gap-4">
+            <CardContent className="flex items-center gap-4 py-4">
               <div className="w-12 h-12 rounded-full bg-verde-brocolis/20 flex items-center justify-center">
                 <Leaf className="w-6 h-6 text-verde-conecta" />
               </div>
@@ -251,21 +334,21 @@ export default function EscolaCardapio() {
           </Card>
 
           <Card>
-            <CardContent className="flex items-center gap-4">
+            <CardContent className="flex items-center gap-4 py-4">
               <div className="w-12 h-12 rounded-full bg-laranja-cenoura/20 flex items-center justify-center">
                 <DollarSign className="w-6 h-6 text-laranja-cenoura" />
               </div>
               <div>
                 <p className="font-body text-sm text-text-muted">Custo Est.</p>
                 <p className="font-display font-bold text-xl text-verde-conecta">
-                  R$ 2.450
+                  R$ {isCardapioIA ? '1.890' : '2.450'}
                 </p>
               </div>
             </CardContent>
           </Card>
 
           <Card>
-            <CardContent className="flex items-center gap-4">
+            <CardContent className="flex items-center gap-4 py-4">
               <div className="w-12 h-12 rounded-full bg-amarelo-pimentao/20 flex items-center justify-center">
                 <Users className="w-6 h-6 text-verde-conecta" />
               </div>
@@ -276,6 +359,26 @@ export default function EscolaCardapio() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Indicador de Cardápio IA */}
+        {isCardapioIA && (
+          <Card className="bg-gradient-to-r from-laranja-cenoura/10 to-verde-brocolis/10 border-laranja-cenoura">
+            <CardContent className="py-3 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Sparkles className="w-6 h-6 text-laranja-cenoura" />
+                <div>
+                  <p className="font-display font-bold text-verde-conecta">
+                    Cardápio otimizado pela IA
+                  </p>
+                  <p className="font-body text-sm text-text-muted">
+                    100% produtos da safra • Economia estimada de R$ 560 • Balanceado nutricionalmente
+                  </p>
+                </div>
+              </div>
+              <OpenAIBadge variant="light" size="sm" />
+            </CardContent>
+          </Card>
+        )}
 
         {/* Cardápio da Semana */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -311,15 +414,22 @@ export default function EscolaCardapio() {
                         >
                           {prato.tipo}
                         </Badge>
-                        {prato.emSafra ? (
-                          <span title="Na safra" className="text-verde-brocolis">
-                            <Leaf className="w-4 h-4" />
-                          </span>
-                        ) : (
-                          <span title="Fora de safra" className="text-laranja-cenoura">
-                            ⚠️
-                          </span>
-                        )}
+                        <div className="flex items-center gap-1">
+                          {prato.geradoPorIA && (
+                            <span title="Sugerido pela IA" className="text-laranja-cenoura">
+                              <Sparkles className="w-3 h-3" />
+                            </span>
+                          )}
+                          {prato.emSafra ? (
+                            <span title="Na safra" className="text-verde-brocolis">
+                              <Leaf className="w-4 h-4" />
+                            </span>
+                          ) : (
+                            <span title="Fora de safra" className="text-laranja-cenoura">
+                              ⚠️
+                            </span>
+                          )}
+                        </div>
                       </div>
                       <p className="font-body text-sm font-medium text-verde-conecta">
                         {prato.nome}
@@ -337,7 +447,7 @@ export default function EscolaCardapio() {
 
         {/* Legenda */}
         <Card className="bg-off-white">
-          <CardContent className="flex flex-wrap gap-6">
+          <CardContent className="flex flex-wrap gap-6 py-3">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-verde-brocolis" />
               <span className="font-body text-sm">Na Safra (mais barato)</span>
@@ -371,12 +481,21 @@ export default function EscolaCardapio() {
               loading={gerando}
               icon={<Sparkles className="w-5 h-5" />}
             >
-              Gerar Cardápio
+              {gerando ? 'Gerando...' : 'Gerar Cardápio'}
             </Button>
           </>
         }
       >
         <div className="space-y-4">
+          <div className="p-4 bg-verde-brocolis/10 rounded-xl">
+            <p className="font-display font-bold text-verde-conecta mb-1">
+              Semana {getNumeroSemana(semanaAtual)}
+            </p>
+            <p className="font-body text-sm text-text-muted">
+              {formatarPeriodoSemana(semanaAtual)}
+            </p>
+          </div>
+
           <p className="font-body text-text-main">
             A IA vai criar um cardápio semanal considerando:
           </p>
@@ -401,6 +520,8 @@ export default function EscolaCardapio() {
 
           <Select
             label="Restrições alimentares"
+            value={restricao}
+            onChange={(e) => setRestricao(e.target.value)}
             options={[
               { value: '', label: 'Nenhuma restrição' },
               { value: 'sem_lactose', label: 'Sem lactose' },
@@ -408,6 +529,19 @@ export default function EscolaCardapio() {
               { value: 'vegetariano', label: 'Vegetariano' },
             ]}
           />
+
+          {isCardapioIA && (
+            <div className="p-3 bg-amarelo-pimentao/20 rounded-xl">
+              <p className="font-body text-sm text-text-main">
+                ⚠️ Esta semana já possui um cardápio gerado pela IA. Gerar novamente substituirá o atual.
+              </p>
+            </div>
+          )}
+
+          {/* OpenAI Sponsor Badge */}
+          <div className="flex justify-center pt-2">
+            <OpenAIBadge variant="light" size="sm" />
+          </div>
         </div>
       </Modal>
     </DashboardLayout>

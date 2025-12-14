@@ -46,21 +46,21 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # ========== MIDDLEWARES DE SEGURANÇA ==========
 
-# 1. CORS - Controle de acesso entre origens
+# 1. CORS - Controle de acesso entre origens (permissivo para demo/hackathon)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
+    allow_origins=["*"],  # Permitir todas as origens para demo
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["X-Total-Count", "X-Page-Count"],
 )
 
-# 2. Trusted Host - Proteção contra host header attacks
-app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=["*"] if settings.debug else ["conectamerenda.com.br", "*.conectamerenda.com.br"]
-)
+# 2. Trusted Host - Desabilitado para demo/hackathon
+# app.add_middleware(
+#     TrustedHostMiddleware,
+#     allowed_hosts=["*"] if settings.debug else ["conectamerenda.com.br", "*.conectamerenda.com.br"]
+# )
 
 # 3. Headers de segurança customizados
 app.add_middleware(SecurityHeadersMiddleware)

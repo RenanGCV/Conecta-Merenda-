@@ -1,22 +1,33 @@
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { ItemCarrinho, Carrinho, Produto } from '@/types';
+import { ItemCarrinho, Carrinho, Produto, TipoFornecedor } from '@/types';
 import toast from 'react-hot-toast';
 
 interface CarrinhoContextType {
   carrinho: Carrinho;
-  adicionarItem: (produtorId: string, produtorNome: string, produto: Produto, quantidade: number) => void;
+  adicionarItem: (
+    produtorId: string,
+    produtorNome: string,
+    produto: Produto,
+    quantidade: number,
+    tipoFornecedor: TipoFornecedor
+  ) => boolean;
   removerItem: (produtorId: string, produtoNome: string) => void;
   atualizarQuantidade: (produtorId: string, produtoNome: string, quantidade: number) => void;
   limparCarrinho: () => void;
   totalItens: number;
+  tipoCarrinho: TipoFornecedor | null;
 }
 
 const CarrinhoContext = createContext<CarrinhoContextType | undefined>(undefined);
 
 export function CarrinhoProvider({ children }: { children: ReactNode }) {
-  const [carrinho, setCarrinho] = useState<Carrinho>({ itens: [], total: 0 });
+  const [carrinho, setCarrinho] = useState<Carrinho>({
+    itens: [],
+    total: 0,
+    tipoFornecedor: null,
+  });
 
   const calcularTotal = (itens: ItemCarrinho[]): number => {
     return itens.reduce((acc, item) => {
@@ -28,8 +39,27 @@ export function CarrinhoProvider({ children }: { children: ReactNode }) {
     produtorId: string,
     produtorNome: string,
     produto: Produto,
-    quantidade: number
-  ) => {
+    quantidade: number,
+    tipoFornecedor: TipoFornecedor
+  ): boolean => {
+    // Verificar se está tentando misturar tipos de fornecedor
+    if (carrinho.tipoFornecedor && carrinho.tipoFornecedor !== tipoFornecedor) {
+      const tipoAtual =
+        carrinho.tipoFornecedor === 'agricultura_familiar'
+          ? 'Agricultura Familiar (30% PNAE)'
+          : 'Fornecedores (70%)';
+      const tipoNovo =
+        tipoFornecedor === 'agricultura_familiar'
+          ? 'Agricultura Familiar (30% PNAE)'
+          : 'Fornecedores (70%)';
+
+      toast.error(
+        `Não é possível misturar compras! Seu carrinho contém itens de ${tipoAtual}. Finalize ou limpe o carrinho antes de adicionar itens de ${tipoNovo}.`,
+        { duration: 5000 }
+      );
+      return false;
+    }
+
     setCarrinho((prev) => {
       // Verificar se o item já existe
       const existingIndex = prev.itens.findIndex(
@@ -46,17 +76,22 @@ export function CarrinhoProvider({ children }: { children: ReactNode }) {
         // Adicionar novo item
         novosItens = [
           ...prev.itens,
-          { produtorId, produtorNome, produto, quantidade },
+          { produtorId, produtorNome, produto, quantidade, tipoFornecedor },
         ];
       }
-
-      toast.success(`${produto.nome} adicionado ao carrinho! 🛒`);
 
       return {
         itens: novosItens,
         total: calcularTotal(novosItens),
+        tipoFornecedor: tipoFornecedor,
       };
     });
+
+    // Toast fora do setCarrinho para evitar duplicação no React Strict Mode
+    const emoji = tipoFornecedor === 'agricultura_familiar' ? '🌱' : '🏭';
+    toast.success(`${produto.nome} adicionado ao carrinho! ${emoji}`);
+
+    return true;
   };
 
   const removerItem = (produtorId: string, produtoNome: string) => {
@@ -68,6 +103,7 @@ export function CarrinhoProvider({ children }: { children: ReactNode }) {
       return {
         itens: novosItens,
         total: calcularTotal(novosItens),
+        tipoFornecedor: novosItens.length > 0 ? prev.tipoFornecedor : null,
       };
     });
     toast.success('Item removido do carrinho');
@@ -94,12 +130,13 @@ export function CarrinhoProvider({ children }: { children: ReactNode }) {
       return {
         itens: novosItens,
         total: calcularTotal(novosItens),
+        tipoFornecedor: prev.tipoFornecedor,
       };
     });
   };
 
   const limparCarrinho = () => {
-    setCarrinho({ itens: [], total: 0 });
+    setCarrinho({ itens: [], total: 0, tipoFornecedor: null });
     toast.success('Carrinho limpo!');
   };
 
@@ -114,6 +151,7 @@ export function CarrinhoProvider({ children }: { children: ReactNode }) {
         atualizarQuantidade,
         limparCarrinho,
         totalItens,
+        tipoCarrinho: carrinho.tipoFornecedor,
       }}
     >
       {children}

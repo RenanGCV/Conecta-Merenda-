@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Home() {
   const router = useRouter();
@@ -22,15 +23,17 @@ export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-creme-papel">
       <div className="text-center">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <span className="text-5xl animate-bounce" style={{ animationDelay: '0ms' }}>🥦</span>
-          <span className="text-5xl animate-bounce" style={{ animationDelay: '150ms' }}>🍅</span>
-          <span className="text-5xl animate-bounce" style={{ animationDelay: '300ms' }}>🥕</span>
+        <div className="flex items-center justify-center mb-4">
+          <Image
+            src="/logo.png"
+            alt="Conecta Merenda"
+            width={180}
+            height={180}
+            className="animate-pulse"
+            priority
+          />
         </div>
         <div className="w-12 h-12 border-4 border-verde-brocolis border-t-verde-conecta rounded-full animate-spin mx-auto mb-4" />
-        <p className="font-display font-bold text-verde-conecta text-xl">
-          Conecta Merenda
-        </p>
         <p className="font-body text-text-muted mt-2">
           Carregando...
         </p>

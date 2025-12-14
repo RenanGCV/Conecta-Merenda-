@@ -55,6 +55,9 @@ export interface Produto {
   preco_unitario: number;
 }
 
+// Tipo de fornecedor
+export type TipoFornecedor = 'agricultura_familiar' | 'fornecedor_normal';
+
 export interface Produtor {
   id: string;
   nome: string;
@@ -77,6 +80,26 @@ export interface Produtor {
   distancia_km?: number;
   score_match?: number;
   desconto_proximidade?: number;
+  // Tipo do fornecedor
+  tipo_fornecedor: TipoFornecedor;
+}
+
+// Fornecedor normal (atacadista/distribuidor)
+export interface Fornecedor {
+  id: string;
+  nome: string;
+  razao_social: string;
+  cnpj: string;
+  tipo: 'atacadista' | 'distribuidor' | 'cooperativa';
+  telefone: string;
+  email: string;
+  localizacao: Localizacao;
+  produtos: Produto[];
+  avaliacao_media: number;
+  total_avaliacoes: number;
+  prazo_entrega_dias: number;
+  pedido_minimo: number;
+  tipo_fornecedor: TipoFornecedor;
 }
 
 // Tipos para Pedidos
@@ -219,11 +242,13 @@ export interface ItemCarrinho {
   produtorNome: string;
   produto: Produto;
   quantidade: number;
+  tipoFornecedor: TipoFornecedor;
 }
 
 export interface Carrinho {
   itens: ItemCarrinho[];
   total: number;
+  tipoFornecedor: TipoFornecedor | null;
 }
 
 // Tipos para Ranking

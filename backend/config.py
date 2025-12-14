@@ -12,9 +12,9 @@ class Settings(BaseSettings):
     Usando Pydantic Settings para garantir type safety e validação.
     """
     
-    # API Keys sensíveis
-    openai_api_key: str
-    secret_key: str
+    # API Keys sensíveis (com defaults para demo/hackathon)
+    openai_api_key: str = ""
+    secret_key: str = "conecta-merenda-hackathon-2025-secret-key-demo"
     
     # Configurações do servidor
     api_host: str = "0.0.0.0"
@@ -25,8 +25,8 @@ class Settings(BaseSettings):
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     
-    # CORS - origens permitidas
-    allowed_origins: str = "http://localhost:3000,http://localhost:8501"
+    # CORS - origens permitidas (inclui Docker e localhost)
+    allowed_origins: str = "http://localhost:3000,http://localhost:8501,http://127.0.0.1:3000,http://frontend:3000,*"
     
     # Rate limiting
     rate_limit_per_minute: int = 60

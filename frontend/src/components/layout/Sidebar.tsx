@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { clsx } from 'clsx';
 import {
@@ -70,8 +71,14 @@ export function Sidebar({ perfil = 'escola' }: SidebarProps) {
       <div className="p-4 border-b border-white/10">
         <div className="flex items-center justify-between">
           {!collapsed && (
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">🥦</span>
+            <div className="flex items-center gap-2">
+              <Image
+                src="/logo.png"
+                alt="Conecta Merenda"
+                width={48}
+                height={48}
+                className="rounded-full bg-white p-0.5"
+              />
               <div>
                 <h1 className="font-display font-bold text-white text-sm">
                   Conecta Merenda
@@ -80,13 +87,32 @@ export function Sidebar({ perfil = 'escola' }: SidebarProps) {
               </div>
             </div>
           )}
+          {collapsed && (
+            <Image
+              src="/logo.png"
+              alt="Conecta Merenda"
+              width={40}
+              height={40}
+              className="rounded-full bg-white p-0.5 mx-auto"
+            />
+          )}
+          {!collapsed && (
+            <button
+              onClick={() => setCollapsed(!collapsed)}
+              className="p-2 rounded-lg hover:bg-white/10 text-white transition-colors"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+        {collapsed && (
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="p-2 rounded-lg hover:bg-white/10 text-white transition-colors"
+            className="p-2 rounded-lg hover:bg-white/10 text-white transition-colors w-full mt-2 flex justify-center"
           >
-            {collapsed ? <ChevronRight className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <ChevronRight className="w-5 h-5" />
           </button>
-        </div>
+        )}
       </div>
 
       {/* Navigation */}
@@ -207,11 +233,11 @@ export function Header({ user }: HeaderProps) {
                   </p>
                   <span className="text-xs text-text-muted">Há 5 minutos</span>
                 </div>
-                <div className="p-3 bg-amarelo-pimentao/10 rounded-lg">
+                <div className="p-3 bg-verde-brocolis/10 rounded-lg">
                   <p className="font-body text-sm">
-                    <span className="font-bold">Alerta climático!</span> Previsão de chuva forte amanhã.
+                    <span className="font-bold">Cardápio aprovado!</span> Cardápio da semana foi validado.
                   </p>
-                  <span className="text-xs text-text-muted">Há 1 hora</span>
+                  <span className="text-xs text-text-muted">Há 2 horas</span>
                 </div>
               </div>
             </div>

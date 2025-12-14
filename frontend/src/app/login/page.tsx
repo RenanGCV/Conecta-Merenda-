@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { School, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import Image from 'next/image';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { Button, Card, Input } from '@/components/ui';
 import { authService } from '@/services/api';
 import toast from 'react-hot-toast';
@@ -45,14 +46,16 @@ export default function LoginPage() {
     <div className="min-h-screen bg-creme-papel flex flex-col items-center justify-center p-4">
       {/* Header / Logo */}
       <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <span className="text-6xl">🥦</span>
-          <span className="text-5xl">🍅</span>
-          <span className="text-6xl">🥕</span>
+        <div className="flex items-center justify-center mb-4">
+          <Image
+            src="/logo.png"
+            alt="Conecta Merenda"
+            width={200}
+            height={200}
+            className="drop-shadow-lg"
+            priority
+          />
         </div>
-        <h1 className="font-display font-black text-4xl md:text-5xl text-verde-conecta">
-          Conecta Merenda
-        </h1>
         <p className="font-body text-text-muted mt-2">
           Gestão inteligente de alimentação escolar
         </p>
@@ -62,9 +65,6 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         {/* Header do Card */}
         <div className="text-center mb-6">
-          <div className="w-20 h-20 mx-auto rounded-full bg-verde-brocolis border-3 border-verde-conecta flex items-center justify-center mb-4">
-            <School className="w-10 h-10 text-verde-conecta" />
-          </div>
           <h2 className="font-display font-bold text-2xl text-verde-conecta">
             Área da Diretora
           </h2>
@@ -126,7 +126,7 @@ export default function LoginPage() {
 
       {/* Footer */}
       <p className="mt-8 font-body text-sm text-text-muted">
-        © 2025 Conecta Merenda - Hackathon PNAE
+        © 2025 Conecta Merenda - Hackathon Devs De Impacto
       </p>
     </div>
   );

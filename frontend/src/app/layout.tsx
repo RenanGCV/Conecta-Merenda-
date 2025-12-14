@@ -20,7 +20,8 @@ export const metadata: Metadata = {
   description: 'Sistema de gestão de compras do Programa Nacional de Alimentação Escolar com IA',
   keywords: ['PNAE', 'merenda escolar', 'agricultura familiar', 'alimentação escolar'],
   icons: {
-    icon: '/favicon.svg',
+    icon: '/logo.png',
+    apple: '/logo.png',
   },
 };
 

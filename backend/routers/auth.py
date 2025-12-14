@@ -24,6 +24,12 @@ MOCK_USERS = {
         "user_id": "ESC001",
         "nome": "EMEF Prof. João Carlos de Oliveira"
     },
+    "diretora@escola.rj.gov.br": {
+        "senha": "123456",
+        "perfil": "escola",
+        "user_id": "ESC002",
+        "nome": "E.M. Professora Maria da Glória"
+    },
     "agricultor@email.com": {
         "senha": "agri123",
         "perfil": "agricultor",

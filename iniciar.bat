@@ -1,46 +1,101 @@
 @echo off
-echo ========================================
-echo   Conecta Merenda - Inicializacao
-echo ========================================
+chcp 65001 >nul 2>nul
+title Conecta Merenda - Iniciando...
+
+echo.
+echo  ================================================================
+echo.
+echo       CONECTA MERENDA
+echo       Sistema Inteligente de Gestao PNAE
+echo.
+echo       Hackathon 2025
+echo.
+echo  ================================================================
 echo.
 
-cd backend
+:: Ir para pasta do script
+cd /d "%~dp0"
 
-echo [1/5] Verificando Python...
-python --version
-if errorlevel 1 (
-    echo ERRO: Python nao encontrado!
-    echo Instale Python 3.10+ de python.org
-    pause
+:: Verificar se Docker está instalado
+docker --version >nul 2>nul
+if %ERRORLEVEL% NEQ 0 (
+    echo  [ERRO] Docker nao encontrado!
+    echo.
+    echo  Para executar este projeto, voce precisa do Docker Desktop.
+    echo  Baixe em: https://www.docker.com/products/docker-desktop
+    echo.
+    echo  Pressione qualquer tecla para sair...
+    pause >nul
     exit /b 1
 )
-echo.
 
-echo [2/5] Criando ambiente virtual...
-if not exist venv (
-    python -m venv venv
-    echo Ambiente virtual criado!
-) else (
-    echo Ambiente virtual ja existe.
+echo  [OK] Docker encontrado!
+
+:: Verificar se Docker está rodando
+docker info >nul 2>nul
+if %ERRORLEVEL% NEQ 0 (
+    echo  [!] Docker nao esta rodando. Iniciando...
+    start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe" 2>nul
+    echo.
+    echo  Aguardando Docker iniciar...
+    :WAIT_DOCKER
+    timeout /t 5 /nobreak >nul
+    docker info >nul 2>nul
+    if %ERRORLEVEL% NEQ 0 goto WAIT_DOCKER
+    echo  [OK] Docker iniciado!
 )
+
+echo.
+echo  Construindo e iniciando containers...
+echo  (Primeira vez pode demorar alguns minutos)
 echo.
 
-echo [3/5] Ativando ambiente virtual...
-call venv\Scripts\activate.bat
+:: Iniciar containers
+docker-compose up --build -d
+
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo  [ERRO] Falha ao iniciar. Verifique se as portas 3000 e 8000 estao livres.
+    echo.
+    echo  Pressione qualquer tecla para sair...
+    pause >nul
+    exit /b 1
+)
+
+echo.
+echo  Aguardando servicos ficarem prontos...
+timeout /t 10 /nobreak >nul
+
+echo.
+echo  ================================================================
+echo.
+echo   SISTEMA PRONTO!
+echo.
+echo   Abrindo navegador...
+echo.
+echo   ----------------------------------------------------------------
+echo.
+echo   LOGIN:
+echo      Email: diretora@escola.rj.gov.br
+echo      Senha: 123456
+echo.
+echo   ----------------------------------------------------------------
+echo.
+echo   URLs:
+echo      Frontend:  http://localhost:3000
+echo      Backend:   http://localhost:8000
+echo      API Docs:  http://localhost:8000/docs
+echo.
+echo  ================================================================
 echo.
 
-echo [4/5] Instalando dependencias...
-pip install -r requirements.txt
-echo.
+:: Abrir navegador
+start http://localhost:3000
 
-echo [5/5] Iniciando servidor...
 echo.
-echo ========================================
-echo   Servidor iniciando...
-echo   Acesse: http://localhost:8000/docs
-echo ========================================
+echo  Para PARAR o sistema, execute: PARAR.bat
 echo.
-
-python start.py
-
-pause
+echo  Pressione qualquer tecla para fechar esta janela...
+echo  (O sistema continuara rodando em segundo plano)
+echo.
+pause >nul

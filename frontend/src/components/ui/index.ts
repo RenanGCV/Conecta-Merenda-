@@ -4,3 +4,4 @@ export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 export { Input, Textarea, Select } from './Input';
 export { Modal, ConfirmModal } from './Modal';
 export { Badge, Avatar, StarRating, Skeleton, Spinner, EmptyState } from './Badge';
+export { OpenAIBadge, OpenAIFloatingBadge, OpenAISponsorTag } from './OpenAIBadge';

@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { DashboardLayout } from '@/components/layout';
 import { Card, CardHeader, CardTitle, CardContent, Button, Input } from '@/components/ui';
+import { MapaEscola } from '@/components/MapaEscola';
 import toast from 'react-hot-toast';
 
 interface PerfilEscola {
@@ -233,7 +234,7 @@ export default function PerfilEscolaPage() {
             </CardContent>
           </Card>
 
-          {/* Card de Localização */}
+          {/* Card de Localização com Mapa */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -242,22 +243,20 @@ export default function PerfilEscolaPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="aspect-square bg-off-white rounded-xl border-3 border-verde-conecta flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-verde-conecta mx-auto mb-2" />
-                  <p className="font-display font-bold text-verde-conecta">
-                    {perfil.endereco.cidade}
-                  </p>
-                  <p className="font-body text-sm text-text-muted">
-                    {perfil.endereco.bairro}
-                  </p>
-                  <p className="font-body text-xs text-text-muted mt-2">
-                    Lat: {perfil.coordenadas.latitude.toFixed(4)}
-                  </p>
-                  <p className="font-body text-xs text-text-muted">
-                    Lng: {perfil.coordenadas.longitude.toFixed(4)}
-                  </p>
-                </div>
+              <div className="h-[300px] rounded-xl overflow-hidden border-3 border-verde-conecta">
+                <MapaEscola
+                  coordenadas={perfil.coordenadas}
+                  nomeEscola={perfil.nome}
+                  endereco={`${perfil.endereco.logradouro}, ${perfil.endereco.numero} - ${perfil.endereco.bairro}`}
+                />
+              </div>
+              <div className="text-center p-3 bg-off-white rounded-xl">
+                <p className="font-display font-bold text-verde-conecta">
+                  {perfil.endereco.bairro}, {perfil.endereco.cidade}
+                </p>
+                <p className="font-body text-xs text-text-muted mt-1">
+                  Lat: {perfil.coordenadas.latitude.toFixed(4)} | Lng: {perfil.coordenadas.longitude.toFixed(4)}
+                </p>
               </div>
             </CardContent>
           </Card>
