@@ -370,3 +370,113 @@ class DashboardInteligente(BaseModel):
     acoes_recomendadas: List[str] = Field(..., description="Ações prioritárias sugeridas pela IA")
     receitas_sugeridas: List[Dict[str, str]] = Field(..., description="Receitas para alimentos rejeitados")
     economia_potencial: float = Field(..., description="Economia estimada seguindo recomendações")
+
+
+# ==================== FISCALIZAÇÃO E CONFORMIDADE ====================
+
+class ItemNotaFiscal(BaseModel):
+    """Item individual da nota fiscal."""
+    produto_nome: str = Field(..., description="Nome do produto comprado")
+    quantidade: float = Field(..., ge=0)
+    unidade: str = Field(..., description="kg, litro, unidade, etc")
+    preco_unitario: float = Field(..., ge=0)
+    valor_total: float = Field(..., ge=0)
+    fornecedor_nome: str
+    fornecedor_cnpj: Optional[str] = None
+
+
+class UploadNotaFiscal(BaseModel):
+    """Upload de nota fiscal pela diretora."""
+    escola_id: str
+    numero_nota: str = Field(..., description="Número da NF-e")
+    data_emissao: str = Field(..., description="YYYY-MM-DD")
+    fornecedor_nome: str
+    fornecedor_cnpj: str = Field(..., min_length=14, max_length=18)
+    valor_total: float = Field(..., ge=0)
+    itens: List[ItemNotaFiscal] = Field(..., min_length=1)
+    categoria_compra: Literal["merenda", "equipamentos", "servicos", "outros"]
+    arquivo_url: Optional[str] = Field(None, description="URL do arquivo PDF/imagem da nota")
+    observacoes: Optional[str] = None
+
+
+class NotaFiscalResponse(BaseModel):
+    """Resposta do upload de nota fiscal."""
+    id: str
+    escola_id: str
+    numero_nota: str
+    valor_total: float
+    status_analise: Literal["pendente", "em_analise", "aprovada", "com_alertas"] = "pendente"
+    data_upload: str
+    conformidade_score: Optional[float] = Field(None, ge=0, le=100, description="Score de conformidade (0-100)")
+
+
+class AlertaFiscalizacao(BaseModel):
+    """Alerta de possível irregularidade detectado pela IA."""
+    tipo: Literal[
+        "preco_inflacionado",
+        "produto_incompativel", 
+        "fornecedor_irregular",
+        "volume_suspeito",
+        "duplicidade",
+        "fora_periodo"
+    ]
+    severidade: Literal["baixa", "media", "alta", "critica"]
+    descricao: str
+    detalhes: Dict[str, any]
+    recomendacao: str
+
+
+class AnaliseNotaFiscal(BaseModel):
+    """Análise completa da nota fiscal pela IA."""
+    nota_fiscal_id: str
+    escola_id: str
+    conformidade_score: float = Field(..., ge=0, le=100, description="0=muito suspeito, 100=totalmente conforme")
+    risco_fraude: Literal["baixo", "medio", "alto", "critico"]
+    alertas: List[AlertaFiscalizacao]
+    analise_preco: Dict[str, any] = Field(..., description="Comparação com preços de mercado")
+    analise_fornecedor: Dict[str, any] = Field(..., description="Histórico e regularidade do fornecedor")
+    analise_compatibilidade: Dict[str, any] = Field(..., description="Produtos compatíveis com PNAE")
+    justificativa_ia: str = Field(..., description="Explicação da IA sobre a análise")
+    requer_investigacao: bool = Field(..., description="Se deve ser investigado manualmente")
+
+
+class DashboardFiscalizacaoGoverno(BaseModel):
+    """Dashboard de fiscalização EXCLUSIVO do governo."""
+    periodo_analise: str
+    
+    # Métricas gerais
+    total_escolas_monitoradas: int
+    total_notas_analisadas: int
+    valor_total_fiscalizado: float
+    
+    # Alertas e riscos
+    escolas_com_alertas: int
+    total_alertas_ativos: int
+    distribuicao_severidade: Dict[str, int] = Field(..., description="Contagem por severidade")
+    
+    # Top alertas
+    escolas_alto_risco: List[Dict[str, any]] = Field(..., description="Escolas que requerem investigação")
+    fornecedores_suspeitos: List[Dict[str, any]] = Field(..., description="Fornecedores com padrões irregulares")
+    produtos_preco_inflacionado: List[Dict[str, any]]
+    
+    # Estatísticas de conformidade
+    score_conformidade_medio: float = Field(..., ge=0, le=100)
+    percentual_notas_aprovadas: float = Field(..., ge=0, le=100)
+    percentual_com_alertas: float = Field(..., ge=0, le=100)
+    percentual_irregulares: float = Field(..., ge=0, le=100)
+    
+    # Tendências
+    tendencia_mes_atual: Dict[str, any]
+    economia_potencial_recuperacao: float = Field(..., description="Valor estimado de possíveis desvios")
+
+
+class RelatorioFiscalizacao(BaseModel):
+    """Relatório detalhado para auditoria."""
+    escola_id: str
+    periodo: str
+    notas_fiscais: List[Dict[str, any]]
+    total_gasto: float
+    conformidade_geral: float
+    alertas_encontrados: List[AlertaFiscalizacao]
+    parecer_ia: str
+    status_recomendado: Literal["regular", "atencao", "investigacao_necessaria", "bloqueio_recomendado"]

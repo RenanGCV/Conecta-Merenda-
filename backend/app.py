@@ -16,7 +16,7 @@ import logging
 from datetime import datetime
 
 from config import settings
-from routers import auth, agricultores, escolas, secretaria, dashboard, professores
+from routers import auth, agricultores, escolas, secretaria, dashboard, professores, fiscalizacao
 from middleware.security import SecurityHeadersMiddleware
 from middleware.logging import LoggingMiddleware
 
@@ -78,6 +78,7 @@ app.include_router(escolas.router, prefix="/api/v1/escolas", tags=["🏫 Escolas
 app.include_router(professores.router, tags=["👨‍🏫 Professores"])
 app.include_router(secretaria.router, prefix="/api/v1/secretaria", tags=["🏛️ Secretaria"])
 app.include_router(dashboard.router, prefix="/api/v1/dashboard", tags=["📊 Dashboard"])
+app.include_router(fiscalizacao.router)  # Fiscalização já tem prefix no router
 
 
 # ========== HEALTH CHECKS ==========
@@ -123,6 +124,7 @@ async def detailed_status(request: Request):
         "timestamp": datetime.utcnow().isoformat(),
         "features": {
             "ai_cardapio": True,
+            "ai_fiscalizacao": True,
             "geolocation": True,
             "qrcode": True,
             "pdf_reports": True,
