@@ -45,7 +45,7 @@
 # 1. Abra o Docker Desktop e aguarde inicializar
 
 # 2. Dê duplo-clique no arquivo:
-EXECUTAR.bat
+iniciar.bat
 ```
 
 **Pronto!** 🎉 O navegador abrirá automaticamente em http://localhost:3000
