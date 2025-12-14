@@ -1,4 +1,5 @@
 <p align="center">
+  <p>
   <img src="Assets/IMG/logo.png" alt="Conecta Merenda" width="300"/>
 </p>
 
